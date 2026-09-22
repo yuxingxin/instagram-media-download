@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ins Downloader</title>
+    <script type="module" src="/main.js" defer></script>
+  </head>
+  <body>
+    <main class="app">
+      <header class="mast">
+        <p class="kicker">Instagram · instaloader</p>
+        <h1>链接下载</h1>
+        <p class="lede">粘贴一条或多条 Instagram 链接，把图片和视频存到本地。</p>
+      </header>
+
+      <label class="field" for="links">
+        <span>Instagram 链接（每行一条，换行后批量下载）</span>
+        <textarea
+          id="links"
+          rows="7"
+          placeholder="每行一条链接，例如：&#10;https://www.instagram.com/p/DdivRY4CFX6/&#10;https://www.instagram.com/reel/Shortcode/&#10;https://www.instagram.com/username/&#10;https://www.instagram.com/explore/tags/kitten/"
+        ></textarea>
+      </label>
+
+      <label class="field dest" for="destination">
+        <span>保存到</span>
+        <div class="dest-row">
+          <input id="destination" type="text" spellcheck="false" />
+          <button type="button" id="pick-dest">选择文件夹</button>
+        </div>
+      </label>
+
+      <div class="actions">
+        <button type="button" id="download">开始下载</button>
+        <p id="hint" class="hint">多个链接请用回车换行隔开，会按行逐条下载。支持帖子、Reels、IGTV、主页、话题、地点和裸短码。</p>
+      </div>
+
+      <section class="status-panel" aria-live="polite">
+        <h2>状态</h2>
+        <ol id="status"></ol>
+      </section>
+    </main>
+  </body>
+</html>

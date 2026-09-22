@@ -1,0 +1,38 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Ins Downloader",
+  "version": "0.1.0",
+  "identifier": "com.ins.downloader",
+  "build": {
+    "beforeBuildCommand": "bash scripts/vendor-instaloader.sh",
+    "beforeDevCommand": "bash scripts/vendor-instaloader.sh",
+    "frontendDist": "../src"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "title": "Ins Downloader",
+        "width": 780,
+        "height": 720
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["app", "dmg", "nsis", "appimage", "deb"],
+    "resources": [
+      "resources/instaloader-runtime"
+    ],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  }
+}
