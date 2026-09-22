@@ -1,114 +1,116 @@
 # Ins Downloader
 
+[English](README.md) | [简体中文](README.zh-CN.md)
+
 [![Release](https://github.com/yuxingxin/instagram-media-download/actions/workflows/release.yml/badge.svg)](https://github.com/yuxingxin/instagram-media-download/actions/workflows/release.yml)
 [![GitHub release](https://img.shields.io/github/v/release/yuxingxin/instagram-media-download)](https://github.com/yuxingxin/instagram-media-download/releases)
 
-跨平台桌面客户端，从 Instagram 链接（单条或批量）把图片和视频保存到本地。下载引擎是 [instaloader](https://instaloader.github.io/)。
+Cross-platform desktop app that saves images and videos from Instagram links (one or many) to local disk. The download engine is [instaloader](https://instaloader.github.io/).
 
-- 使用安装包：从 [Releases](https://github.com/yuxingxin/instagram-media-download/releases) 下载对应系统的文件。
-- 从源码构建：见 [从源码构建](#从源码构建)。
+- Installer: download the build for the current OS from [Releases](https://github.com/yuxingxin/instagram-media-download/releases).
+- Build from source: see [Build from source](#build-from-source).
 
-## 功能
+## Features
 
-- 粘贴一条或多条 Instagram 链接，按行逐条下载
-- 支持帖子、Reels、IGTV、主页、话题、地点、分享链接和裸短码
-- 轮播帖保存全部图片和视频
-- 安装包已内置 instaloader，使用时不必再装 Python
-- 提供 Windows、macOS、Linux 安装包
+- Paste one or more Instagram links and download them line by line
+- Posts, Reels, IGTV, profiles, hashtags, locations, share links, and bare shortcodes
+- Carousel posts save every image and video
+- Installers bundle instaloader, so Python is not required at runtime
+- Windows, macOS, and Linux packages
 
-保存图片和视频，不保存 caption 与 JSON 元数据。应用未提供 Instagram 登录入口，通过 instaloader 请求公开内容。
+Downloads include images and videos. Captions and JSON metadata are omitted. The app has no Instagram login and requests public content through instaloader.
 
-## 安装
+## Install
 
-从 [Releases](https://github.com/yuxingxin/instagram-media-download/releases) 下载当前系统对应的文件：
+Download the file for the current OS from [Releases](https://github.com/yuxingxin/instagram-media-download/releases):
 
-| 系统 | 架构 | 安装包 |
-|------|------|--------|
+| OS | Arch | Package |
+|----|------|---------|
 | macOS | Apple Silicon | `.dmg` |
 | Windows | x64 | NSIS `.exe` |
-| Linux | x64 | AppImage 或 `.deb` |
+| Linux | x64 | AppImage or `.deb` |
 
-安装包目前未做平台签名或公证。macOS 可能提示来自身份不明的开发者，可在 Finder 中右键应用后选择「打开」。Windows 可能出现 SmartScreen 提示。
+Packages are currently unsigned and not notarized. macOS may warn that the developer cannot be verified; in Finder, Control-click the app and choose Open. Windows may show a SmartScreen prompt.
 
-## 使用
+## Usage
 
-1. 启动 Ins Downloader。
-2. 在输入框粘贴一条或多条链接，每行一条。
-3. 确认保存目录（默认 `Pictures/Instagram`），需要时点击「选择文件夹」。
-4. 点击「开始下载」。
-5. 在「状态」列表查看每条链接的结果。
+1. Launch Ins Downloader.
+2. Paste one or more links into the input box, one per line.
+3. Confirm the save folder (default `Pictures/Instagram`). Use Choose folder when another path is needed.
+4. Click Start download.
+5. Check each link’s result in the Status list.
 
-### 支持的链接
+### Supported links
 
-对应 [instaloader Targets](https://instaloader.github.io/cli-options.html#targets)：
+Matches [instaloader Targets](https://instaloader.github.io/cli-options.html#targets):
 
-| 类型 | 示例 |
-|------|------|
-| 帖子 / Reels / IGTV | `https://www.instagram.com/p/<shortcode>/`、`/reel/`、`/reels/`、`/tv/`，以及 `https://www.instagram.com/<username>/p/<shortcode>/` |
-| 分享链接 | `https://www.instagram.com/share/p/<shortcode>/`、`/share/reel/<shortcode>/` |
-| 主页 | `https://www.instagram.com/<username>/` |
-| 话题 | `https://www.instagram.com/explore/tags/<hashtag>/` 或 `#hashtag` |
-| 地点 | `https://www.instagram.com/explore/locations/<id>/` 或 `%location_id` |
-| 裸短码 | `DdivRY4CFX6`，或 instaloader 语法 `-shortcode` |
+| Type | Examples |
+|------|----------|
+| Post / Reels / IGTV | `https://www.instagram.com/p/<shortcode>/`, `/reel/`, `/reels/`, `/tv/`, and `https://www.instagram.com/<username>/p/<shortcode>/` |
+| Share link | `https://www.instagram.com/share/p/<shortcode>/`, `/share/reel/<shortcode>/` |
+| Profile | `https://www.instagram.com/<username>/` |
+| Hashtag | `https://www.instagram.com/explore/tags/<hashtag>/` or `#hashtag` |
+| Location | `https://www.instagram.com/explore/locations/<id>/` or `%location_id` |
+| Bare shortcode | `DdivRY4CFX6`, or instaloader syntax `-shortcode` |
 
-## 从源码构建
+## Build from source
 
-### 前置条件
+### Prerequisites
 
-- 对应系统的开发环境：Windows x64、macOS Apple Silicon 或 Linux x64
-- [Rust](https://rustup.rs/)（`rustup`）
+- A matching dev machine: Windows x64, macOS Apple Silicon, or Linux x64
+- [Rust](https://rustup.rs/) (`rustup`)
 - [Node.js](https://nodejs.org/)
-- Windows 上运行 vendor 脚本需要 Git Bash
+- Git Bash on Windows to run the vendor script
 
-打包时 `scripts/vendor-instaloader.sh` 会下载该平台的独立 Python，并安装 instaloader 到 `src-tauri/resources/`。
+`scripts/vendor-instaloader.sh` downloads a standalone Python for the current platform and installs instaloader into `src-tauri/resources/`.
 
-### 开发运行
+### Development
 
 ```bash
 npm install
 npm run tauri dev
 ```
 
-### 测试与打包
+### Test and package
 
 ```bash
 cd src-tauri && cargo test
 npm run tauri build
 ```
 
-`npm run tauri build` 会按当前系统生成安装包。
+`npm run tauri build` produces an installer for the current OS.
 
-## 发布
+## Release
 
-1. 把 `package.json`、`src-tauri/tauri.conf.json`、`src-tauri/Cargo.toml` 的 `version` 改成同一版本号。
-2. 在 `CHANGELOG.md` 顶部加上对应版本说明（标题形如 `## 0.1.0 - YYYY-MM-DD`）。
-3. 提交后打 tag 并推送到 GitHub：
+1. Set the same `version` in `package.json`, `src-tauri/tauri.conf.json`, and `src-tauri/Cargo.toml`.
+2. Add release notes at the top of `CHANGELOG.md` (heading like `## 0.1.0 - YYYY-MM-DD`).
+3. Commit, then tag and push to GitHub:
 
 ```bash
 git tag v0.1.0
 git push origin v0.1.0
 ```
 
-推送 `v*` tag 到 [yuxingxin/instagram-media-download](https://github.com/yuxingxin/instagram-media-download) 会触发 GitHub Actions，并行打包三端并创建 GitHub Release：
+Pushing a `v*` tag to [yuxingxin/instagram-media-download](https://github.com/yuxingxin/instagram-media-download) runs GitHub Actions, builds all three platforms, and creates a GitHub Release:
 
-- macOS Apple Silicon：`.dmg`
-- Windows x64：NSIS 安装包
-- Linux x64：AppImage / `.deb`
+- macOS Apple Silicon: `.dmg`
+- Windows x64: NSIS installer
+- Linux x64: AppImage / `.deb`
 
-Release 说明优先使用 `CHANGELOG.md` 中该版本的段落；找不到对应段落时，使用上一个 tag 到当前 tag 的 commit 列表。
+Release notes use the matching `CHANGELOG.md` section when present; otherwise they use the commit list from the previous tag to the current tag.
 
-仓库 Settings → Actions → General → Workflow permissions 需要允许 Read and write。
+Repository Settings → Actions → General → Workflow permissions must allow Read and write.
 
-## 贡献
+## Contributing
 
-通过 [GitHub Issues](https://github.com/yuxingxin/instagram-media-download/issues) 报告问题，通过 Pull Request 提交修改。
+Report issues via [GitHub Issues](https://github.com/yuxingxin/instagram-media-download/issues). Send changes via pull request.
 
-## 致谢
+## Acknowledgments
 
-- [instaloader](https://instaloader.github.io/)：下载引擎
-- [Tauri](https://tauri.app/)：桌面壳
-- [python-build-standalone](https://github.com/astral-sh/python-build-standalone)：安装包内的独立 Python
+- [instaloader](https://instaloader.github.io/): download engine
+- [Tauri](https://tauri.app/): desktop shell
+- [python-build-standalone](https://github.com/astral-sh/python-build-standalone): standalone Python inside the installer
 
-## 声明
+## Disclaimer
 
-使用本软件时须遵守 Instagram 服务条款以及所下载内容的著作权规定。本项目与 Instagram、Meta 无关联。
+Use of this software must comply with Instagram’s Terms of Use and the copyright of downloaded content. This project is not affiliated with Instagram or Meta.
