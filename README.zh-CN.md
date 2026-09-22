@@ -30,7 +30,22 @@
 | Windows | x64 | NSIS `.exe` |
 | Linux | x64 | `.deb` |
 
-安装包目前未做平台签名或公证。macOS 可能提示来自身份不明的开发者，可在 Finder 中右键应用后选择「打开」。Windows 可能出现 SmartScreen 提示。
+安装包目前未做平台签名或公证。
+
+### 首次在 macOS 上打开
+
+浏览器下载后，Gatekeeper 可能提示 **「Ins Downloader」已损坏，无法打开**。这是系统拦截未签名应用时的提示。
+
+1. 打开 `.dmg`，把 `Ins Downloader.app` 拷到「应用程序」或桌面。不要在磁盘映像里直接启动。
+2. 在终端清除下载隔离标记：
+
+```bash
+xattr -cr "/Applications/Ins Downloader.app"
+```
+
+3. 打开拷贝后的应用。
+
+Windows 上运行 NSIS 安装包时，SmartScreen 可能先弹出警告。选择「更多信息」，再选择仍要运行。
 
 ## 使用
 

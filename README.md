@@ -30,7 +30,22 @@ Download the file for the current OS from [Releases](https://github.com/yuxingxi
 | Windows | x64 | NSIS `.exe` |
 | Linux | x64 | `.deb` |
 
-Packages are currently unsigned and not notarized. macOS may warn that the developer cannot be verified; in Finder, Control-click the app and choose Open. Windows may show a SmartScreen prompt.
+Packages are currently unsigned and not notarized.
+
+### First launch on macOS
+
+After a browser download, Gatekeeper may show **“Ins Downloader” is damaged and can’t be opened**. That is the unsigned-app block.
+
+1. Open the `.dmg` and copy `Ins Downloader.app` to Applications or the Desktop. Do not launch it from the disk image.
+2. In Terminal, remove the download quarantine flag:
+
+```bash
+xattr -cr "/Applications/Ins Downloader.app"
+```
+
+3. Open the copied app.
+
+On Windows, SmartScreen may warn before the NSIS installer runs. Choose more info, then run anyway.
 
 ## Usage
 
