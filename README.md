@@ -28,7 +28,7 @@ Download the file for the current OS from [Releases](https://github.com/yuxingxi
 |----|------|---------|
 | macOS | Apple Silicon | `.dmg` |
 | Windows | x64 | NSIS `.exe` |
-| Linux | x64 | AppImage or `.deb` |
+| Linux | x64 | `.deb` |
 
 Packages are currently unsigned and not notarized. macOS may warn that the developer cannot be verified; in Finder, Control-click the app and choose Open. Windows may show a SmartScreen prompt.
 
@@ -95,7 +95,7 @@ Pushing a `v*` tag to [yuxingxin/instagram-media-download](https://github.com/yu
 
 - macOS Apple Silicon: `.dmg`
 - Windows x64: NSIS installer
-- Linux x64: AppImage / `.deb`
+- Linux x64: `.deb`
 
 Release notes use the matching `CHANGELOG.md` section when present; otherwise they use the commit list from the previous tag to the current tag.
 

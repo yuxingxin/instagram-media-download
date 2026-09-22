@@ -28,7 +28,7 @@
 |------|------|--------|
 | macOS | Apple Silicon | `.dmg` |
 | Windows | x64 | NSIS `.exe` |
-| Linux | x64 | AppImage 或 `.deb` |
+| Linux | x64 | `.deb` |
 
 安装包目前未做平台签名或公证。macOS 可能提示来自身份不明的开发者，可在 Finder 中右键应用后选择「打开」。Windows 可能出现 SmartScreen 提示。
 
@@ -95,7 +95,7 @@ git push origin v0.1.0
 
 - macOS Apple Silicon：`.dmg`
 - Windows x64：NSIS 安装包
-- Linux x64：AppImage / `.deb`
+- Linux x64：`.deb`
 
 Release 说明优先使用 `CHANGELOG.md` 中该版本的段落；找不到对应段落时，使用上一个 tag 到当前 tag 的 commit 列表。
 
